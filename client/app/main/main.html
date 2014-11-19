@@ -1,0 +1,38 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <form class="search-form">
+    <input type="text" class="col-md-7 col-xs-12" id="search-input" placeholder="Search the Greensheet" ng-model="ctrl.searchInput">
+    <span class="btn-group col-md-offset-1 col-md-3 col-xs-8" id="search-radio">
+      <label class="btn btn-default" ng-model="ctrl.city" btn-radio="'Houston'">Houston</label>
+      <label class="btn btn-default" ng-model="ctrl.city" btn-radio="'Austin'">Austin</label>
+    </span>
+    <button class="btn btn-primary col-md-1 col-xs-4" id="search-submit" ng-click="ctrl.search()">Search</button>
+  </form>
+</div>
+
+<div class="container" id="search-results">
+  <div ng-show="ctrl.loading" id="loading-gif"></div>
+  <div ng-show="ctrl.loaded && !ctrl.loading" id="search-for">Search results for: {{ctrl.searchTerm}}</div>
+  <div masonry='{ "transitionDuration" : "0.4s" , "itemSelector" : ".tile"}' ng-hide="ctrl.loading">
+    <div masonry-tile class="tile" ng-repeat="brick in ctrl.ads" ng-if="$index < 25">
+      <div class="panel panel-default" id="result-panel">
+        <div class="panel-heading">
+          <h1 class="panel-title">{{brick.MainCategoryName}} - {{brick.SubCategoryName}}</h1>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <img src="{{brick.PhotoUrl}}" class="col-md-4 col-xs-12" ng-show="brick.PhotoUrl !== null">
+            <span ng-class="{'col-md-8': brick.PhotoUrl !== null, 'col-xs-12': true}">{{brick.Text}}</span>
+          </div>
+          <div class="row">
+            <a href="{{brick.AdUrl}}" target="_blank" class="btn btn-primary pull-right">Go to Ad</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+</footer>
