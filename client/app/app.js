@@ -7,7 +7,7 @@ angular.module('douglassTestApp', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
-  'masonry'
+  'wu.masonry'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $urlRouterProvider

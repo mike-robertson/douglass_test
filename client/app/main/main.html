@@ -14,16 +14,16 @@
 <div class="container" id="search-results">
   <div ng-show="ctrl.loading" id="loading-gif"></div>
   <div ng-show="ctrl.loaded && !ctrl.loading" id="search-for">Search results for: {{ctrl.searchTerm}}</div>
-  <div masonry='{ "transitionDuration" : "0.4s" , "itemSelector" : ".tile"}' ng-hide="ctrl.loading">
-    <div masonry-tile class="tile" ng-repeat="brick in ctrl.ads" ng-if="$index < 25">
+  <div masonry='{ "transitionDuration" : "0.1s"}' ng-hide="ctrl.loading">
+    <div class="masonry-brick" ng-repeat="brick in ctrl.ads" ng-if="$index < 25">
       <div class="panel panel-default" id="result-panel">
         <div class="panel-heading">
-          <h1 class="panel-title">{{brick.MainCategoryName}} - {{brick.SubCategoryName}}</h1>
+          <h1 class="panel-title">{{brick.title}} - {{brick.SubCategoryName}}</h1>
         </div>
         <div class="panel-body">
           <div class="row">
-            <img src="{{brick.PhotoUrl}}" class="col-md-4 col-xs-12" ng-show="brick.PhotoUrl !== null">
-            <span ng-class="{'col-md-8': brick.PhotoUrl !== null, 'col-xs-12': true}">{{brick.Text}}</span>
+            <img src="{{brick.PhotoURL}}" class="col-md-4 col-xs-12" ng-show="!brick.loading">
+            <span ng-class="{'col-md-8': brick.PhotoUrl !== null, 'col-xs-12': true}">{{brick.WEBTEXT}}</span>
           </div>
           <div class="row">
             <a href="{{brick.AdUrl}}" target="_blank" class="btn btn-primary pull-right">Go to Ad</a>
